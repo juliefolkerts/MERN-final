@@ -1,4 +1,4 @@
-// client/hooks/useAuth.ts
+
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -36,11 +36,9 @@ export function useAuth() {
     async function login(data: LoginSchema) {
         const res = await loginMutation({ variables: data });
 
-        // coerce undefined -> null so the store's setter type matches
         const token = res.data?.login.token ?? null;
         const user = res.data?.login.user ?? null;
 
-        // explicit nullish check
         if (token == null) throw new Error("Invalid login response: missing token");
 
         setUser(user);   // user is User | null

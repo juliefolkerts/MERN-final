@@ -11,8 +11,6 @@ export default function LoginPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Here you will call your backend GraphQL mutation
-        // Placeholder:
         console.log({ email, password });
         setSession("dummy-token", { email });
     };
