@@ -1,32 +1,11 @@
 "use client";
 
 import ProtectedRoute from "@/components/ProtectedRoute";
-import PostList from "@/components/PostList";
 import CreatePostForm from "@/components/CreatePostForm";
+import PostList from "@/components/PostList";
+import { mockPosts } from "@/graphql/mock/posts";
 
 export default function FeedPage() {
-    // Mock data
-    const mockPosts = [
-        {
-            id: "1",
-            title: "Mock Post",
-            content: "This is a fake post so you can test your UI.",
-            createdAt: new Date().toISOString(),
-            author: { id: "u1", username: "Alice" },
-            reactionsCount: 3,
-            commentsCount: 2,
-        },
-        {
-            id: "2",
-            title: "Another Mock Post",
-            content: "Second example post.",
-            createdAt: new Date().toISOString(),
-            author: { id: "u2", username: "Bob" },
-            reactionsCount: 1,
-            commentsCount: 0,
-        },
-    ];
-
     return (
         <ProtectedRoute>
             <div className="max-w-xl mx-auto p-4 space-y-4">
@@ -39,7 +18,7 @@ export default function FeedPage() {
 
 
 
-
+//without mock data
 // import ProtectedRoute from "@/components/ProtectedRoute";
 // import CreatePostForm from "@/components/CreatePostForm";
 //
