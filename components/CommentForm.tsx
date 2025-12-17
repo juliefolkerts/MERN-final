@@ -28,21 +28,69 @@ export default function CommentForm({ postId }: { postId: string }) {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-2">
-      <textarea
-          className="w-full border p-2 rounded"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Write a comment..."
-      />
+            <textarea
+                className="input"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                placeholder="Write a comment..."
+            />
             <button
                 type="submit"
-                className="w-full bg-blue-500 text-white py-2 rounded"
+                className="btn btn-primary w-full"
             >
                 Add Comment
             </button>
         </form>
     );
 }
+
+
+
+// "use client";
+//
+// import { useState } from "react";
+// import { mockComments } from "@/graphql/mock/comments";
+//
+// export default function CommentForm({ postId }: { postId: string }) {
+//     const [text, setText] = useState("");
+//
+//     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+//         e.preventDefault();
+//
+//         if (!text.trim()) return;
+//
+//         mockComments.push({
+//             id: Math.random().toString(),
+//             postId,
+//             text,
+//             createdAt: new Date().toISOString(),
+//             author: {
+//                 id: "local-user",
+//                 username: "You",
+//             },
+//         });
+//
+//         setText("");
+//         alert("Comment added (mock)!");
+//     };
+//
+//     return (
+//         <form onSubmit={handleSubmit} className="space-y-2">
+//       <textarea
+//           className="w-full border p-2 rounded"
+//           value={text}
+//           onChange={(e) => setText(e.target.value)}
+//           placeholder="Write a comment..."
+//       />
+//             <button
+//                 type="submit"
+//                 className="w-full bg-blue-500 text-white py-2 rounded"
+//             >
+//                 Add Comment
+//             </button>
+//         </form>
+//     );
+// }
 
 
 

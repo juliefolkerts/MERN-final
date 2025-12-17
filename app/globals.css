@@ -1,20 +1,45 @@
 @import "tailwindcss/preflight";
 @tailwind utilities;
 
+:root {
+    --bg-main: #f7faf9;
+    --bg-card: #ffffff;
+
+    --text-main: #0f172a;
+    --text-muted: #475569;
+
+    --border-subtle: #e2e8f0;
+
+    /* Brand colors */
+    --green-main: #16a34a;
+    --green-dark: #15803d;
+    --green-soft: #dcfce7;
+
+    --accent-blue: #2563eb;
+    --accent-red: #dc2626;
+
+    --ring: rgba(22, 163, 74, 0.35);
+}
+
 
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    background-color: #f3f4f6;
-    color: #111827;
+    background:
+            radial-gradient(1200px 600px at top, #ecfdf5, transparent),
+            var(--bg-main);
+    color: var(--text-main);
     -webkit-font-smoothing: antialiased;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
+
 
 h1, h2, h3, h4 {
     font-weight: 600;
-    color: #111827;
+    letter-spacing: -0.015em;
+    color: var(--text-main);
 }
 
 
@@ -22,65 +47,150 @@ h1, h2, h3, h4 {
     max-width: 42rem;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
 }
 
+
 .card {
-    background-color: white;
-    border-radius: 0.75rem;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    background-color: var(--bg-card);
+    border-radius: 1rem;
+    border: 1px solid var(--border-subtle);
+    box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.04),
+            0 8px 24px rgba(0, 0, 0, 0.04);
+    transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease,
+            border-color 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+            0 4px 6px rgba(0, 0, 0, 0.05),
+            0 16px 32px rgba(0, 0, 0, 0.06);
+    border-color: #bbf7d0;
 }
 
 .card-padding {
-    padding: 1rem;
+    padding: 1.25rem;
 }
+
 
 .input {
     width: 100%;
-    border-radius: 0.5rem;
-    border: 1px solid #d1d5db;
-    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-subtle);
+    background-color: #f8fafc;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition:
+            border-color 0.15s ease,
+            box-shadow 0.15s ease,
+            background-color 0.15s ease;
+}
+
+.input::placeholder {
+    color: var(--text-muted);
 }
 
 .input:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
+    background-color: white;
+    border-color: var(--green-main);
+    box-shadow: 0 0 0 3px var(--ring);
 }
+
+
+
 
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 0.5rem;
+    gap: 0.4rem;
+    border-radius: 0.75rem;
     font-weight: 500;
-    padding: 0.5rem 1rem;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition:
+            transform 0.1s ease,
+            box-shadow 0.1s ease,
+            background-color 0.15s ease;
+}
+
+.btn:active {
+    transform: translateY(1px);
 }
 
 .btn-primary {
-    background-color: #2563eb;
+    background: linear-gradient(180deg, #22c55e, var(--green-main));
     color: white;
+    box-shadow:
+            0 4px 12px rgba(22, 163, 74, 0.35);
 }
 
 .btn-primary:hover {
-    background-color: #1d4ed8;
+    background: linear-gradient(180deg, #16a34a, var(--green-dark));
 }
 
 .btn-success {
-    background-color: #16a34a;
-    color: white;
+    background-color: var(--green-soft);
+    color: var(--green-dark);
 }
 
 .btn-success:hover {
-    background-color: #15803d;
+    background-color: #bbf7d0;
 }
 
 .btn-danger {
-    background-color: #dc2626;
-    color: white;
+    background-color: #fee2e2;
+    color: var(--accent-red);
 }
 
 .btn-danger:hover {
-    background-color: #b91c1c;
+    background-color: #fecaca;
+}
+
+
+.feed-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-subtle), transparent);
+    margin: 1rem 0;
+}
+
+.reaction {
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background-color: #f1f5f9;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.reaction:hover {
+    background-color: var(--green-soft);
+    color: var(--green-dark);
+}
+
+.navbar {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:
+            linear-gradient(180deg, #16a34a, #15803d);
+    color: white;
+}
+
+.navbar-link {
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+.navbar-link:hover {
+    opacity: 1;
+    text-decoration: underline;
 }

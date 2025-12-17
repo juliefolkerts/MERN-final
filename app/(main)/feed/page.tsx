@@ -3,18 +3,61 @@
 import ProtectedRoute from "@/components/ProtectedRoute";
 import CreatePostForm from "@/components/CreatePostForm";
 import PostList from "@/components/PostList";
+import LensSelector from "@/components/lens/LensSelector";
+import LensEditor from "@/components/lens/LensEditor";
+
 import { mockPosts } from "@/graphql/mock/posts";
+import { useLensStore } from "@/store/lens.store";
+import { applyLens } from "@/lib/lens-utils";
 
 export default function FeedPage() {
+    //lens
+    const { lenses, activeLensId, setActiveLens, addLens } = useLensStore();
+
+    const activeLens =
+        lenses.find((l) => l.id === activeLensId) ?? null;
+
+    const filteredPosts = applyLens(mockPosts, activeLens);
+
     return (
         <ProtectedRoute>
-            <div className="max-w-xl mx-auto p-4 space-y-4">
+            <div className="page-container space-y-4">
                 <CreatePostForm />
-                <PostList posts={mockPosts} />
+
+                <LensSelector
+                    lenses={lenses}
+                    activeLensId={activeLensId}
+                    onSelect={setActiveLens}
+                />
+
+                <LensEditor onSave={addLens} />
+
+                <PostList posts={filteredPosts} />
             </div>
         </ProtectedRoute>
     );
 }
+
+
+
+
+// "use client";
+//
+// import ProtectedRoute from "@/components/ProtectedRoute";
+// import CreatePostForm from "@/components/CreatePostForm";
+// import PostList from "@/components/PostList";
+// import { mockPosts } from "@/graphql/mock/posts";
+//
+// export default function FeedPage() {
+//     return (
+//         <ProtectedRoute>
+//             <div className="max-w-xl mx-auto p-4 space-y-4">
+//                 <CreatePostForm />
+//                 <PostList posts={mockPosts} />
+//             </div>
+//         </ProtectedRoute>
+//     );
+// }
 
 
 

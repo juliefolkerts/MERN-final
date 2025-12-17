@@ -8,14 +8,14 @@ export default function Navbar() {
     const logout = useAuthStore((s) => s.logout);
 
     return (
-        <nav className="w-full bg-gray-900 text-white px-6 py-3 flex justify-between">
+        <nav className="navbar">
             <div className="flex gap-4">
-                <Link href="/feed" className="hover:underline">
+                <Link href="/feed" className="navbar-link">
                     Feed
                 </Link>
 
                 {user && (
-                    <Link href="/profile" className="hover:underline">
+                    <Link href="/profile" className="navbar-link">
                         Profile
                     </Link>
                 )}
@@ -23,11 +23,11 @@ export default function Navbar() {
 
             <div>
                 {user ? (
-                    <button onClick={logout} className="hover:underline">
+                    <button onClick={logout} className="navbar-link">
                         Logout
                     </button>
                 ) : (
-                    <Link href="/login" className="hover:underline">
+                    <Link href="/login" className="navbar-link">
                         Login
                     </Link>
                 )}
@@ -35,6 +35,46 @@ export default function Navbar() {
         </nav>
     );
 }
+
+
+
+// "use client";
+//
+// import Link from "next/link";
+// import { useAuthStore } from "@/store/auth.store";
+//
+// export default function Navbar() {
+//     const user = useAuthStore((s) => s.user);
+//     const logout = useAuthStore((s) => s.logout);
+//
+//     return (
+//         <nav className="w-full bg-gray-900 text-white px-6 py-3 flex justify-between">
+//             <div className="flex gap-4">
+//                 <Link href="/feed" className="hover:underline">
+//                     Feed
+//                 </Link>
+//
+//                 {user && (
+//                     <Link href="/profile" className="hover:underline">
+//                         Profile
+//                     </Link>
+//                 )}
+//             </div>
+//
+//             <div>
+//                 {user ? (
+//                     <button onClick={logout} className="hover:underline">
+//                         Logout
+//                     </button>
+//                 ) : (
+//                     <Link href="/login" className="hover:underline">
+//                         Login
+//                     </Link>
+//                 )}
+//             </div>
+//         </nav>
+//     );
+// }
 
 
 
